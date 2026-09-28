@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="fade-in py-14">
+  <a href="{% url 'websites_list' %}" class="mono text-sm text-[var(--text-dim)] hover:text-[var(--accent-2)] mb-6 inline-block">&larr; back to websites</a>
+  <div class="grid md:grid-cols-2 gap-10">
+    <div>
+      {% if website.image %}
+      <img src="{{ website.image.url }}" alt="{{ website.title }}" class="w-full rounded-xl border border-[var(--border)] object-cover mb-6">
+      {% endif %}
+      <h2 class="text-3xl font-bold mono mb-3">{{ website.title }}</h2>
+      <p class="text-[var(--text-dim)] leading-relaxed">{{ website.description }}</p>
+    </div>
+    
+    <div class="win">
+      <div class="win-bar">
+        <span class="dot" style="background:#FF5F57"></span>
+        <span class="dot" style="background:#FFBD2E"></span>
+        <span class="dot" style="background:#28C840"></span>
+        <span class="mono text-xs text-[var(--text-mute)] ml-2">order_form.py</span>
+      </div>
+      <form class="p-6" method="POST">
+        {% csrf_token %}
+        <label class="block mono text-xs text-[var(--text-dim)] mb-2">Website Type</label>
+        <select id="site-type" name="website_type" class="w-full rounded-md px-4 py-3 mb-5 text-sm" onchange="toggleEssentialPages()">
+          <option value="ويب سايت كامل">Full Website</option>
+          <option value="لاندنج بيدج">Landing Page</option>
+        </select>
+
+        <div id="essential-pages-wrap">
+          <label class="block mono text-xs text-[var(--text-dim)] mb-2">Essential Pages</label>
+          <input type="hidden" name="requested_pages" id="requested_pages_input" value="Home, Contact">
+          <div id="essential-pages" class="flex flex-wrap gap-2 mb-5"></div>
+        </div>
+
+        <div class="rounded-md px-4 py-3 mb-5 text-sm" style="background:rgba(255,201,76,.1); border:1px solid rgba(255,201,76,.4); color:var(--warn)">
+          ⚠ Note: Payment is 50% in advance and 50% upon delivery.
+        </div>
+
+        <label class="block mono text-xs text-[var(--text-dim)] mb-2">Phone Number or Facebook Link</label>
+        <input type="text" name="contact_info" required placeholder="+20 1xx xxx xxxx or fb.com/you" class="w-full rounded-md px-4 py-3 mb-5 text-sm">
+
+        <button type="submit" class="btn-primary mono w-full py-3 rounded-md text-sm">Submit Order</button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+const essentialPages = ['Home','About','Services','Contact','Shop','Blog'];
+let selectedPages = new Set(['Home','Contact']);
+
+function renderEssentialPages(){
+  const wrap = document.getElementById('essential-pages');
+  wrap.innerHTML = essentialPages.map(p => `
+    <span class="tag ${selectedPages.has(p)?'on':''} px-3.5 py-2 rounded-full text-sm mono" 
+          onclick="togglePage(this,'${p}')">${p}</span>
+  `).join('');
+  updateInput();
+}
+
+function togglePage(el, name){
+  if(selectedPages.has(name)){ 
+    selectedPages.delete(name); 
+    el.classList.remove('on'); 
+  } else { 
+    selectedPages.add(name); 
+    el.classList.add('on'); 
+  }
+  updateInput();
+}
+
+function updateInput() {
+    document.getElementById('requested_pages_input').value = Array.from(selectedPages).join(', ');
+}
+
+function toggleEssentialPages(){
+  const type = document.getElementById('site-type').value;
+  document.getElementById('essential-pages-wrap').style.display = (type === 'ويب سايت كامل') ? 'block' : 'none';
+}
+
+renderEssentialPages();
+</script>
+{% endblock %}

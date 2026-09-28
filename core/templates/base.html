@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Abdelrhman Khaled — Python Developer</title>
+
+<!-- إعدادات SEO الأساسية -->
+<meta name="description" content="موقع شخصي ومعرض أعمال عبدالرحمن خالد، مطور بايثون وخبير أتمتة (Python Developer & Automation Expert). تصفح السكريبتات والمواقع واطلب برمجتك الخاصة.">
+<meta name="keywords" content="عبدالرحمن خالد, بايثون, مطور ويب, أتمتة, جانجو, سكريبتات, Abdelrhman Khaled, Python Developer, Django, Automation, Bots">
+<meta name="author" content="Abdelrhman Khaled">
+
+<!-- إعدادات المشاركة على السوشيال ميديا (Open Graph) - للفيسبوك وواتساب ولينكدإن -->
+<meta property="og:title" content="Abdelrhman Khaled — Python Developer">
+<meta property="og:description" content="معرض أعمال عبدالرحمن خالد. تصفح أحدث السكريبتات ومواقع الويب واطلب مشروعك البرمجي الآن.">
+<meta property="og:image" content="https://api.dicebear.com/7.x/initials/svg?seed=Abdelrhman%20Khaled&backgroundColor=12181a&textColor=39ff8c"> <!-- تقدر تغير الرابط ده بصورتك الحقيقية بعدين -->
+<meta property="og:url" content="https://yourwebsite.pythonanywhere.com"> <!-- غير ده برابط موقعك بعد الرفع -->
+<meta property="og:type" content="website">
+
+<!-- إعدادات تويتر (X) -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Abdelrhman Khaled — Python Developer">
+<meta name="twitter:description" content="مطور بايثون وخبير أتمتة. تصفح أعمالي واطلب مشروعك الآن.">
+<meta name="twitter:image" content="https://api.dicebear.com/7.x/initials/svg?seed=Abdelrhman%20Khaled&backgroundColor=12181a&textColor=39ff8c">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root{
+    --bg:#0A0E0F; --bg-raised:#101516; --card:#12181A; --card-hi:#161D1F;
+    --border:#1E2A27; --border-hi:#28433A;
+    --text:#E7ECEA; --text-dim:#8FA09A; --text-mute:#5E6D68;
+    --accent:#39FF8C; --accent-dim:#22B569; --accent-2:#4CC9F0;
+    --danger:#FF6B6B; --warn:#FFC94C;
+  }
+  *{box-sizing:border-box;}
+  body{background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; min-height: 100vh; display: flex; flex-direction: column;}
+  .mono{font-family:'JetBrains Mono',monospace}
+  ::selection{background:var(--accent); color:#04120A}
+  .grid-glow{
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(57,255,140,.08), transparent 40%),
+      radial-gradient(circle at 85% 20%, rgba(76,201,240,.06), transparent 40%),
+      linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size:100% 100%, 100% 100%, 42px 42px, 42px 42px;
+  }
+  .win{background:var(--card); border:1px solid var(--border); border-radius:10px; overflow:hidden}
+  .win-bar{display:flex; align-items:center; gap:6px; padding:9px 12px; background:var(--bg-raised); border-bottom:1px solid var(--border)}
+  .dot{width:10px; height:10px; border-radius:50%}
+  .btn-primary{
+    background:var(--accent); color:#04120A; font-weight:700;
+    box-shadow:0 0 0 rgba(57,255,140,0); transition:box-shadow .25s ease, transform .15s ease, background .2s;
+    display: inline-block; text-align: center;
+  }
+  .btn-primary:hover{box-shadow:0 0 26px rgba(57,255,140,.45); transform:translateY(-1px); background:#4dffa0}
+  .btn-outline{
+    border:1px solid var(--border-hi); color:var(--text); transition:border-color .2s, color .2s, box-shadow .25s;
+    display: inline-block; text-align: center;
+  }
+  .btn-outline:hover{border-color:var(--accent-2); color:var(--accent-2); box-shadow:0 0 18px rgba(76,201,240,.25)}
+  .card-hover{transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease}
+  .card-hover:hover{transform:translateY(-6px); box-shadow:0 18px 40px -12px rgba(0,0,0,.6); border-color:var(--border-hi)}
+  .pulse-ring{animation:pulse 2.8s ease-in-out infinite}
+  @keyframes pulse{
+    0%,100%{box-shadow:0 0 0 0 rgba(57,255,140,.35), 0 0 40px 6px rgba(57,255,140,.15)}
+    50%{box-shadow:0 0 0 10px rgba(57,255,140,0), 0 0 55px 10px rgba(57,255,140,.28)}
+  }
+  .tag{border:1px solid var(--border-hi); color:var(--text-dim); transition:all .18s; cursor:pointer; user-select:none; display: inline-block;}
+  .tag.on{background:var(--accent); border-color:var(--accent); color:#04120A; font-weight:600}
+  input[type=text],input[type=tel],select{
+    background:var(--bg-raised); border:1px solid var(--border); color:var(--text);
+    transition:border-color .2s, box-shadow .2s;
+    width: 100%;
+  }
+  input:focus,select:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px rgba(57,255,140,.15)}
+  .fade-in{animation:fadeIn .35s ease both}
+  @keyframes fadeIn{from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:translateY(0)}}
+</style>
+</head>
+<body class="grid-glow">
+
+<!-- NAV -->
+<nav class="sticky top-0 z-40 backdrop-blur bg-[#0A0E0Fcc] border-b border-[var(--border)]">
+  <div class="max-w-6xl mx-auto px-5 py-4 flex items-center justify-between">
+    <a href="{% url 'home' %}" class="mono text-sm sm:text-base text-[var(--accent)]">boda@khaled<span class="text-[var(--text-dim)]">:~$</span></a>
+    <div class="flex gap-1 sm:gap-2 mono text-xs sm:text-sm">
+      <a href="{% url 'home' %}" class="nav-link px-3 py-2 rounded hover:text-[var(--accent)] transition-colors">home</a>
+      <a href="{% url 'scripts_list' %}" class="nav-link px-3 py-2 rounded hover:text-[var(--accent)] transition-colors">scripts</a>
+      <a href="{% url 'websites_list' %}" class="nav-link px-3 py-2 rounded hover:text-[var(--accent)] transition-colors">websites</a>
+    </div>
+  </div>
+</nav>
+
+<main class="max-w-6xl mx-auto px-5 flex-grow w-full relative">
+  
+  <!-- كود إظهار رسائل التأكيد -->
+  {% if messages %}
+    <div class="fixed top-20 right-5 z-50 flex flex-col gap-2">
+      {% for message in messages %}
+        <div class="bg-[var(--accent)] text-[#04120A] px-4 py-3 rounded shadow-lg font-bold mono text-sm fade-in" style="animation: fadeIn 0.5s, fadeOut 0.5s 4s forwards;">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+    
+    <style>
+      @keyframes fadeOut {
+        from {opacity: 1;}
+        to {opacity: 0; visibility: hidden;}
+      }
+    </style>
+  {% endif %}
+  <!-- نهاية كود الرسائل -->
+
+  <!-- المحتوى هيتغير هنا حسب الصفحة -->
+  {% block content %}
+  {% endblock %}
+</main>
+
+<footer class="border-t border-[var(--border)] mt-auto">
+  <div class="max-w-6xl mx-auto px-5 py-8 text-center text-[var(--text-mute)] mono text-xs">
+    © 2026 Abdelrhman Khaled — built with Python, patience, and coffee.
+  </div>
+</footer>
+
+{% block extra_scripts %}{% endblock %}
+</body>
+</html>

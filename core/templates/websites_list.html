@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="fade-in py-14">
+  <p class="mono text-[var(--accent-2)] text-sm mb-2">$ ls ./websites</p>
+  <h2 class="text-3xl font-bold mono mb-10">Websites Portfolio</h2>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for website in websites %}
+    <div class="win card-hover">
+      <div class="win-bar">
+        <span class="dot" style="background:#FF5F57"></span>
+        <span class="dot" style="background:#FFBD2E"></span>
+        <span class="dot" style="background:#28C840"></span>
+      </div>
+      {% if website.image %}
+      <img src="{{ website.image.url }}" alt="{{ website.title }}" class="w-full h-40 object-cover bg-[var(--bg-raised)]">
+      {% endif %}
+      <div class="p-5">
+        <h3 class="font-semibold text-lg mb-4">{{ website.title }}</h3>
+        <div class="flex gap-3">
+          <a href="{% url 'website_detail' website.id %}" class="btn-primary mono flex-1 py-2.5 rounded-md text-sm block">View Details</a>
+          {% if website.preview_link %}
+          <a href="{{ website.preview_link }}" target="_blank" class="btn-outline mono flex-1 py-2.5 rounded-md text-sm block">Live Preview</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="fade-in">
+  <div class="min-h-[82vh] flex flex-col items-center justify-center text-center py-16">
+    <div class="relative mb-8">
+      <div class="w-36 h-36 sm:w-44 sm:h-44 rounded-full pulse-ring p-1" style="background:linear-gradient(135deg,var(--accent),var(--accent-2))">
+        <!-- هنستبدل الرابط ده بعدين بصورتك الحقيقية لو حابب -->
+        <img src="https://api.dicebear.com/7.x/initials/svg?seed=Abdelrhman%20Khaled&backgroundColor=12181a&textColor=39ff8c" alt="Abdelrhman Khaled" class="w-full h-full rounded-full object-cover border-4 border-[var(--bg)]">
+      </div>
+    </div>
+    <p class="mono text-[var(--accent)] text-sm mb-3">$ whoami</p>
+    <h1 class="text-4xl sm:text-6xl font-bold mono tracking-tight mb-3">Abdelrhman Khaled</h1>
+    <p class="text-lg sm:text-xl text-[var(--text-dim)] mb-10">Python Developer &amp; Automation Expert</p>
+    <div class="flex flex-col sm:flex-row gap-4">
+      <a href="{% url 'scripts_list' %}" class="btn-primary mono px-7 py-3.5 rounded-lg text-sm sm:text-base">View My Scripts</a>
+      <a href="{% url 'websites_list' %}" class="btn-outline mono px-7 py-3.5 rounded-lg text-sm sm:text-base">View My Websites</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

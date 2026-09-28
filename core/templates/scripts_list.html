@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="fade-in py-14">
+  <p class="mono text-[var(--accent)] text-sm mb-2">$ ls ./scripts</p>
+  <h2 class="text-3xl font-bold mono mb-10">Scripts Portfolio</h2>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for script in scripts %}
+    <div class="win card-hover">
+      <div class="win-bar">
+        <span class="dot" style="background:#FF5F57"></span>
+        <span class="dot" style="background:#FFBD2E"></span>
+        <span class="dot" style="background:#28C840"></span>
+      </div>
+      {% if script.image %}
+      <img src="{{ script.image.url }}" alt="{{ script.title }}" class="w-full h-40 object-cover bg-[var(--bg-raised)]">
+      {% endif %}
+      <div class="p-5">
+        <h3 class="font-semibold text-lg mb-4">{{ script.title }}</h3>
+        <a href="{% url 'script_detail' script.id %}" class="btn-primary mono w-full py-2.5 rounded-md text-sm block">View Details</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
