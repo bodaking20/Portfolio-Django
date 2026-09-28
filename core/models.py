@@ -6,6 +6,8 @@ class Script(models.Model):
     image = models.ImageField(upload_to='scripts/', verbose_name="صورة الاسكربت")
     description = models.TextField(verbose_name="تفاصيل الاسكربت")
     price = models.CharField(max_length=100, verbose_name="أسعار الاشتراك")
+    is_free = models.BooleanField(default=False, verbose_name="هل السكريبت مجاني؟")
+    github_link = models.URLField(max_length=500, blank=True, null=True, verbose_name="رابط جيت هاب")
 
     def __str__(self):
         return self.title

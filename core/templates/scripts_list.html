@@ -15,8 +15,14 @@
       <img src="{{ script.image.url }}" alt="{{ script.title }}" class="w-full h-40 object-cover bg-[var(--bg-raised)]">
       {% endif %}
       <div class="p-5">
-        <h3 class="font-semibold text-lg mb-4">{{ script.title }}</h3>
-        <a href="{% url 'script_detail' script.id %}" class="btn-primary mono w-full py-2.5 rounded-md text-sm block">View Details</a>
+        <!-- تم إضافة فليكس هنا لضبط المسافات بين العنوان وكلمة مجاني -->
+        <h3 class="font-semibold text-lg mb-4 flex justify-between items-center">
+          <span>{{ script.title }}</span>
+          {% if script.is_free %}
+            <span class="bg-[var(--accent)] text-[#0a0a0a] text-xs px-2 py-1 rounded mono">مجاني 🎁</span>
+          {% endif %}
+        </h3>
+        <a href="{% url 'script_detail' script.id %}" class="btn-primary mono w-full py-2.5 rounded-md text-sm block text-center">View Details</a>
       </div>
     </div>
     {% endfor %}

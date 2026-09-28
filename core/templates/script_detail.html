@@ -7,24 +7,57 @@
     <img src="{{ script.image.url }}" alt="{{ script.title }}" class="w-full rounded-xl border border-[var(--border)] object-cover">
     {% endif %}
     <div>
-      <h2 class="text-3xl font-bold mono mb-3">{{ script.title }}</h2>
-      <p class="text-[var(--accent)] mono text-lg mb-5">{{ script.price }}</p>
+      <h2 class="text-3xl font-bold mono mb-3">
+        {{ script.title }}
+        {% if script.is_free %}
+          <span class="inline-block bg-[var(--accent)] text-[#0a0a0a] text-xs px-2 py-1 rounded ml-2 align-middle">مجاني 🎁</span>
+        {% endif %}
+      </h2>
+      <p class="text-[var(--accent)] mono text-lg mb-5">
+        {% if script.is_free %}
+          $0.00
+        {% else %}
+          {{ script.price }}
+        {% endif %}
+      </p>
       <p class="text-[var(--text-dim)] leading-relaxed mb-8">{{ script.description }}</p>
       
-      <div class="win">
-        <div class="win-bar">
-          <span class="dot" style="background:#FF5F57"></span>
-          <span class="dot" style="background:#FFBD2E"></span>
-          <span class="dot" style="background:#28C840"></span>
-          <span class="mono text-xs text-[var(--text-mute)] ml-2">request_subscription.py</span>
+      {% if script.is_free %}
+        <!-- الجزء الخاص بالسكريبت المجاني (رابط جيت هاب) -->
+        <div class="win">
+          <div class="win-bar">
+            <span class="dot" style="background:#FF5F57"></span>
+            <span class="dot" style="background:#FFBD2E"></span>
+            <span class="dot" style="background:#28C840"></span>
+            <span class="mono text-xs text-[var(--text-mute)] ml-2">open_source.py</span>
+          </div>
+          <div class="p-6">
+            <p class="block mono text-xs text-[var(--text-dim)] mb-4">هذا السكريبت مفتوح المصدر ومجاني بالكامل.</p>
+            {% if script.github_link %}
+              <a href="{{ script.github_link }}" target="_blank" class="btn-primary mono w-full py-3 rounded-md text-sm block text-center">الذهاب إلى الأداة (GitHub)</a>
+            {% else %}
+              <p class="mono text-sm text-[var(--accent)]">سيتم إضافة الرابط قريباً...</p>
+            {% endif %}
+          </div>
         </div>
-        <form class="p-6" method="POST">
-          {% csrf_token %}
-          <label class="block mono text-xs text-[var(--text-dim)] mb-2">Phone Number or Facebook Link</label>
-          <input type="text" name="contact_info" required placeholder="+20 1xx xxx xxxx or fb.com/you" class="w-full rounded-md px-4 py-3 mb-5 text-sm">
-          <button type="submit" class="btn-primary mono w-full py-3 rounded-md text-sm">Request Subscription</button>
-        </form>
-      </div>
+      {% else %}
+        <!-- الجزء الخاص بالسكريبت المدفوع (فورم الطلب القديمة) -->
+        <div class="win">
+          <div class="win-bar">
+            <span class="dot" style="background:#FF5F57"></span>
+            <span class="dot" style="background:#FFBD2E"></span>
+            <span class="dot" style="background:#28C840"></span>
+            <span class="mono text-xs text-[var(--text-mute)] ml-2">request_subscription.py</span>
+          </div>
+          <form class="p-6" method="POST">
+            {% csrf_token %}
+            <label class="block mono text-xs text-[var(--text-dim)] mb-2">Phone Number or Facebook Link</label>
+            <input type="text" name="contact_info" required placeholder="+20 1xx xxx xxxx or fb.com/you" class="w-full rounded-md px-4 py-3 mb-5 text-sm">
+            <button type="submit" class="btn-primary mono w-full py-3 rounded-md text-sm">Request Subscription</button>
+          </form>
+        </div>
+      {% endif %}
+      
     </div>
   </div>
 </section>
